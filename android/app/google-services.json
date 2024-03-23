@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "333948556331",
+    "project_id": "financenavigatorapp",
+    "storage_bucket": "financenavigatorapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333948556331:android:7a4020bd8eb9d1ac25066e",
+        "android_client_info": {
+          "package_name": "com.financenavigator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333948556331-0ucd1k6edt0jmsfbokqivb6b2fb8t7as.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.financenavigator",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "333948556331-0psqckb5nkj16h7h6s9gh9maone65a6a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALiAjTPh-4nQJ7TGzcWCgfRDvPCAWALEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333948556331-0psqckb5nkj16h7h6s9gh9maone65a6a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
