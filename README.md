@@ -2,7 +2,43 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+
+## Konfiguracja projektu
+
+Z package.json trzeba doinstalować wszystkie potrzebne biblioteki i pakiety (metadane) z których ten projekt korzysta. Stworzy się folder node_modules.
+
+```bash
+# using npm
+npm install
+
+```
+
+W `android/app/src/build.gradle` trzeba zmienić w
+
+```bash
+buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // Caution! In production, you need to generate your own keystore file.
+            // see https://reactnative.dev/docs/signed-apk-android.
+            shrinkResources true
+            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.debug
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+}
+
+```
+
+z signingConfig signingConfigs.release na signingConfig signingConfigs.debug. Wystarczy zakomentować to pierwsze. Czyli jeśli debugujemy i uruchamiamy na emulatorze bądź fizycznym telefonie musi być to ustawione.
+
+Nie kompilować na iOs , nie znam efektu działania aplikacji , czy w ogóle się uruchomi czy wyrzuci błąd. Aplikacje można przetestować tylko w trybie debugowania , gdyż jest domyślny debug.keystore. Jeśli chce się format .apk konieczne jest wygenerowanie nowego własnego keystore, który będzie zawierać klucz sha-1 , ale ten klucz ja wpisuje w cloud firestore w Uwierzytelnianiu dodając nowy fingerprint, wtedy logowanie działa. W trybie debugowania powinno działać logowanie. Wersja Androida 12 i niżej działa nie wiem jak nowsze wersje Androida.
+
+W innych plikach konfiguracyjnych w katalogu android , wszystko jest wpisane/skonfigurowane więc raczej nie ma konieczności dodawania czegoś jeszcze. Po zrobieniu `git pull origin main` powinno wszystko zaciągnąć.
 
 ## Step 1: Start the Metro Server
 
@@ -30,16 +66,6 @@ npm run android
 
 # OR using Yarn
 yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
