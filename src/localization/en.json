@@ -257,5 +257,16 @@
   "FAQSettingsWindowA10Text": "A10: The basic version of the app is free to download and use.",
   "FAQSettingsWindowQ11Text": "Q11: How to use built-in making receipt images using device camera?",
   "FAQSettingsWindowA11Text": "A11: That's simple. Find screen where you can make images and allow permission to the device camera. Then make one image , click recognize text button and algorithm find neccessary information. When you click save data to database your total Amount of receipt will be added to your home budget and all data will be saved to database.",
+  "MakeReceiptPhotosScreenTakenDataCategoryText": "Category",
+  "MakeReceiptPhotosScreenTakenDataDocumentTypeText": "Document Type",
+  "MakeReceiptPhotosScreenTakenDataCurrencyText": "Currency",
+  "MakeReceiptPhotosScreenTakenDataSupplierNameText": "Supplier Name",
+  "MakeReceiptPhotosScreenTakenDataSupplierAdressText": "Supplier Adress",
+  "MakeReceiptPhotosScreenTakenDataTotalAmountText": "Total Amount",
+  "MakeReceiptPhotosScreenTakenDataCreatedAtText": "Created At",
+  "MakeReceiptPhotosScreenTakenDataDescriptionText": "Description",
+  "MakeReceiptPhotosScreenTakenDataQuantityText": "Quantity",
+  "MakeReceiptPhotosScreenTakenDataUnitPriceText": "Unit Price",
+  "MakeReceiptPhotosScreenTakenDataPriceText": "Price",
   "FormsScreenSubmitText": "Add"
 }

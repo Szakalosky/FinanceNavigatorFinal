@@ -653,18 +653,264 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
                     padding: 10,
                   }}
                 >
-                  {Object.entries(expensesArrayFromAPI[expensesArrayFromAPI.length - 1]).map(
-                    ([key, value], index) => (
-                      <View key={index}>
-                        <Text style={{ color: 'black', fontSize: 16 }}>{`${key}: ${JSON.stringify(
-                          value
-                        )}`}</Text>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View
+                      style={{
+                        flexDirection: 'column',
+                        backgroundColor: 'limegreen',
+                        alignItems: 'flex-start',
+                        paddingHorizontal: 5,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          flex: 1,
+                          fontSize: 16,
+                          fontWeight: 'bold',
+                          textAlign: 'center',
+                          color: 'black',
+                        }}
+                      >
+                        {t('MakeReceiptPhotosScreenTakenDataCategoryText')}
+                      </Text>
+                      <Text
+                        style={{
+                          flex: 1,
+                          fontSize: 16,
+                          fontWeight: 'bold',
+                          textAlign: 'center',
+                          color: 'black',
+                        }}
+                      >
+                        {t('MakeReceiptPhotosScreenTakenDataDocumentTypeText')}
+                      </Text>
+                      <Text
+                        style={{
+                          flex: 1,
+                          fontSize: 16,
+                          fontWeight: 'bold',
+                          textAlign: 'center',
+                          color: 'black',
+                        }}
+                      >
+                        {t('MakeReceiptPhotosScreenTakenDataCurrencyText')}
+                      </Text>
+                      <Text
+                        style={{
+                          flex: 1,
+                          fontSize: 16,
+                          fontWeight: 'bold',
+                          textAlign: 'center',
+                          color: 'black',
+                        }}
+                      >
+                        {t('MakeReceiptPhotosScreenTakenDataSupplierNameText')}
+                      </Text>
+                      <Text
+                        style={{
+                          flex: 1,
+                          fontSize: 16,
+                          fontWeight: 'bold',
+                          textAlign: 'center',
+                          color: 'black',
+                        }}
+                      >
+                        {t('MakeReceiptPhotosScreenTakenDataSupplierAdressText')}
+                      </Text>
+                      <Text
+                        style={{
+                          flex: 1,
+                          fontSize: 16,
+                          fontWeight: 'bold',
+                          textAlign: 'center',
+                          color: 'black',
+                        }}
+                      >
+                        {t('MakeReceiptPhotosScreenTakenDataTotalAmountText')}
+                      </Text>
+                      <Text
+                        style={{
+                          flex: 1,
+                          fontSize: 16,
+                          fontWeight: 'bold',
+                          textAlign: 'center',
+                          color: 'black',
+                        }}
+                      >
+                        {t('MakeReceiptPhotosScreenTakenDataCreatedAtText')}
+                      </Text>
+                    </View>
+                    <ScrollView horizontal>
+                      <View style={{ flexDirection: 'column', flex: 1 }}>
+                        {expensesArrayFromAPI.map((expense, index) => (
+                          <Text
+                            key={index}
+                            style={{
+                              fontSize: 16,
+                              textAlign: 'center',
+                              backgroundColor: 'lightgray',
+                              color: 'black',
+                            }}
+                          >
+                            {expense.category}
+                          </Text>
+                        ))}
+                        {expensesArrayFromAPI.map((expense, index) => (
+                          <Text
+                            key={index}
+                            style={{ fontSize: 16, textAlign: 'center', color: 'black' }}
+                          >
+                            {expense.documentType}
+                          </Text>
+                        ))}
+                        {expensesArrayFromAPI.map((expense, index) => (
+                          <Text
+                            key={index}
+                            style={{
+                              fontSize: 16,
+                              textAlign: 'center',
+                              backgroundColor: 'lightgray',
+                              color: 'black',
+                            }}
+                          >
+                            {expense.currency}
+                          </Text>
+                        ))}
+                        {expensesArrayFromAPI.map((expense, index) => (
+                          <Text
+                            key={index}
+                            style={{ fontSize: 16, textAlign: 'center', color: 'black' }}
+                          >
+                            {expense.supplierName}
+                          </Text>
+                        ))}
+                        {expensesArrayFromAPI.map((expense, index) => (
+                          <Text
+                            key={index}
+                            style={{
+                              fontSize: 16,
+                              textAlign: 'center',
+                              backgroundColor: 'lightgray',
+                              color: 'black',
+                            }}
+                          >
+                            {expense.supplierAddress}
+                          </Text>
+                        ))}
+                        {expensesArrayFromAPI.map((expense, index) => (
+                          <Text
+                            key={index}
+                            style={{ fontSize: 16, textAlign: 'center', color: 'black' }}
+                          >
+                            {expense.totalAmount}
+                          </Text>
+                        ))}
+                        {expensesArrayFromAPI.map((expense, index) => (
+                          <Text
+                            key={index}
+                            style={{
+                              fontSize: 16,
+                              textAlign: 'center',
+                              backgroundColor: 'lightgray',
+                              color: 'black',
+                            }}
+                          >
+                            {expense.createdAt}
+                          </Text>
+                        ))}
+                      </View>
+                    </ScrollView>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      backgroundColor: 'limegreen',
+                      padding: 5,
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Text
+                      style={{
+                        flex: 1,
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        color: 'black',
+                      }}
+                    >
+                      {t('MakeReceiptPhotosScreenTakenDataDescriptionText')}
+                    </Text>
+                    <Text
+                      style={{
+                        flex: 1,
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        color: 'black',
+                      }}
+                    >
+                      {t('MakeReceiptPhotosScreenTakenDataQuantityText')}
+                    </Text>
+                    <Text
+                      style={{
+                        flex: 1,
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        color: 'black',
+                      }}
+                    >
+                      {t('MakeReceiptPhotosScreenTakenDataUnitPriceText')}
+                    </Text>
+                    <Text
+                      style={{
+                        flex: 1,
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        color: 'black',
+                      }}
+                    >
+                      {t('MakeReceiptPhotosScreenTakenDataPriceText')}
+                    </Text>
+                  </View>
+                  {expensesArrayFromAPI[expensesArrayFromAPI.length - 1].receiptFields.map(
+                    (receiptField, index) => (
+                      <View
+                        key={index}
+                        style={{
+                          flexDirection: 'row',
+                          padding: 10,
+                          backgroundColor: index % 2 === 0 ? 'white' : 'lightgrey',
+                        }}
+                      >
+                        <Text
+                          style={{ flex: 1, fontSize: 16, textAlign: 'center', color: 'black' }}
+                        >
+                          {receiptField.description}
+                        </Text>
+                        <Text
+                          style={{ flex: 1, fontSize: 16, textAlign: 'center', color: 'black' }}
+                        >
+                          {receiptField.quantity}
+                        </Text>
+                        <Text
+                          style={{ flex: 1, fontSize: 16, textAlign: 'center', color: 'black' }}
+                        >
+                          {receiptField.unitPrice}
+                        </Text>
+                        <Text
+                          style={{ flex: 1, fontSize: 16, textAlign: 'center', color: 'black' }}
+                        >
+                          {receiptField.totalAmount}
+                        </Text>
                       </View>
                     )
                   )}
                 </View>
               ) : null}
             </View>
+
             <View style={{ flex: 1, height: 1000 }} />
           </ScrollView>
         </View>

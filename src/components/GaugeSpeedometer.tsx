@@ -1,9 +1,11 @@
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 const GaugeSpeedometer = ({ value, minValue, maxValue }) => {
+  const { t, i18n } = useTranslation();
   const calculateRotation = () => {
     const percentValue = (value - minValue) / (maxValue - minValue);
 
@@ -13,9 +15,21 @@ const GaugeSpeedometer = ({ value, minValue, maxValue }) => {
 
     return rotationDegrees.toString() + 'deg';
   };
+
+  const isPolish = i18n.language === 'pl';
+  const isEnglish = i18n.language === 'en';
   return (
     <View style={{ backgroundColor: 'transparent', alignItems: 'center' }}>
-      <Image source={require('../assets/images/speedometer.png')} alt="gauge" />
+      <Image
+        source={
+          isPolish
+            ? require('../assets/images/speedometerpl.png')
+            : isEnglish
+            ? require('../assets/images/speedometeren.png')
+            : require('../assets/images/speedometerde.png')
+        }
+        alt="gauge"
+      />
       <View
         style={{
           ...styles.radioButton,

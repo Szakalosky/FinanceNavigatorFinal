@@ -224,5 +224,16 @@
   "FAQSettingsWindowA10Text": "A10: Podstawowa wersja aplikacji jest bezpłatna.",
   "FAQSettingsWindowQ11Text": "Q11: Jak korzystać z wbudowanej funkcji tworzenia obrazów paragonów za pomocą kamery urządzenia?",
   "FAQSettingsWindowA11Text": "A11: To proste. Znajdź ekran, na którym możesz robić zdjęcia i zezwól na dostęp do kamery urządzenia. Następnie utwórz jeden obraz, kliknij przycisk rozpoznawania tekstu i algorytm znajdzie niezbędne informacje. Po kliknięciu przycisku zapisz dane w bazie danych całkowita kwota paragonu zostanie dodana do budżetu domowego, a wszystkie dane zostaną zapisane w bazie danych.",
+  "MakeReceiptPhotosScreenTakenDataCategoryText": "Kategoria",
+  "MakeReceiptPhotosScreenTakenDataDocumentTypeText": "Typ dokumentu",
+  "MakeReceiptPhotosScreenTakenDataCurrencyText": "Waluta",
+  "MakeReceiptPhotosScreenTakenDataSupplierNameText": "Nazwa Dostawcy",
+  "MakeReceiptPhotosScreenTakenDataSupplierAdressText": "Adres Dostawcy",
+  "MakeReceiptPhotosScreenTakenDataTotalAmountText": "Całkowita kwota",
+  "MakeReceiptPhotosScreenTakenDataCreatedAtText": "Utworzono",
+  "MakeReceiptPhotosScreenTakenDataDescriptionText": "Opis",
+  "MakeReceiptPhotosScreenTakenDataQuantityText": "Ilość",
+  "MakeReceiptPhotosScreenTakenDataUnitPriceText": "Cena/szt",
+  "MakeReceiptPhotosScreenTakenDataPriceText": "Całkowita kwota",
   "FormsScreenSubmitText": "Dodaj"
 }

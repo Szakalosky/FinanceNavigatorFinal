@@ -224,5 +224,16 @@
   "FAQSettingsWindowA10Text": "A10: Die Basisversion der App kann kostenlos heruntergeladen und genutzt werden.",
   "FAQSettingsWindowQ11Text": "Q11: Wie verwendet man integrierte Bilder zur Erstellung von Quittungen mit der Kamera des Geräts?",
   "FAQSettingsWindowA11Text": "A11: Das ist ganz einfach. Finden Sie den Bildschirm, wo Sie Bilder machen können und erlauben Sie die Erlaubnis für die Gerätekamera. Dann machen Sie ein Bild, klicken Sie auf die Schaltfläche 'Text erkennen' und der Algorithmus findet die notwendigen Informationen. Wenn Sie auf Daten in der Datenbank speichern klicken, wird der Gesamtbetrag der Quittung zu Ihrem Haushalt hinzugefügt und alle Daten werden in der Datenbank gespeichert.",
+  "MakeReceiptPhotosScreenTakenDataCategoryText": "die Kategorie",
+  "MakeReceiptPhotosScreenTakenDataDocumentTypeText": "Dokumenttyp",
+  "MakeReceiptPhotosScreenTakenDataCurrencyText": "Die Währung",
+  "MakeReceiptPhotosScreenTakenDataSupplierNameText": "Name des Lieferanten",
+  "MakeReceiptPhotosScreenTakenDataSupplierAdressText": "Anbieter Adresse",
+  "MakeReceiptPhotosScreenTakenDataTotalAmountText": "Gesamtmenge",
+  "MakeReceiptPhotosScreenTakenDataCreatedAtText": "Erstellt am",
+  "MakeReceiptPhotosScreenTakenDataDescriptionText": "die Beschreibung",
+  "MakeReceiptPhotosScreenTakenDataQuantityText": "die Menge",
+  "MakeReceiptPhotosScreenTakenDataUnitPriceText": "Einzelpreis",
+  "MakeReceiptPhotosScreenTakenDataPriceText": "der Preis",
   "FormsScreenSubmitText": "Hinzufügen"
 }
