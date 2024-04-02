@@ -261,9 +261,7 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
     return [];
   };
 
-  useEffect(() => {
-    console.log('CO TO JEST', expensesArrayFromAPI);
-  }, [expensesArrayFromAPI]);
+  const token = 'Token d6306679e134f7fc0d22f1d0fc3e528c';
 
   const handleCaptureAndRecognize = async () => {
     try {
@@ -312,7 +310,7 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
           }
         });
         xhr.open('POST', 'https://api.mindee.net/v1/products/mindee/expense_receipts/v5/predict');
-        xhr.setRequestHeader('Authorization', 'Token d6306679e134f7fc0d22f1d0fc3e528c');
+        xhr.setRequestHeader('Authorization', token);
         xhr.send(formData);
       }
     } catch (error) {
@@ -414,18 +412,6 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
       console.log('Error: expensesArrayFromAPI is empty');
     }
   };
-
-  const receiptTotalValuePhotoScreen = useSelector(
-    (state: RootState) => state.name.receiptTotalValuePhotoScreen
-  );
-
-  useEffect(() => {
-    async function readReceipt() {
-      const rData = await AsyncStorage.getItem('receiptValue');
-      console.log('Paragon', rData);
-    }
-    readReceipt();
-  }, [receiptTotalValuePhotoScreen]);
 
   const onSubmit = () => {
     console.log('ON SUBMIT BUTTON');

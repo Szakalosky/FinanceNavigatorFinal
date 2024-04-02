@@ -34,6 +34,7 @@ import { expensesScreenSchema } from '../../schemas/expensesScreenSchema';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   navigateToMainContent,
+  setConnectedState,
   setExpenseScreenNotFirstRun,
   setIncomeScreenNotFirstRun,
   setMainContentScreenExpensesArray,
@@ -43,6 +44,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import auth from '@react-native-firebase/auth';
 import { User as FirebaseUser } from '@react-native-firebase/auth';
+import NetInfo from '@react-native-community/netinfo';
 
 export type Props = NativeStackScreenProps<NavigatorList, 'HomeScreen'>;
 
@@ -462,6 +464,31 @@ const ExpensesScreen: React.FC<Props> = ({ navigation }) => {
     console.log('ACCOUNT', universalExpensesAccountValue);
   }, [universalExpensesAccountValue]);
 
+  const [isConnected, setIsConnected] = useState<boolean | null>(false);
+  const [hasConnectionForFiveSecs, setHasConnectionForFiveSecs] = useState<boolean>(false);
+
+  const checkNetworkConn = useSelector((state: RootState) => state.name.isConnectedToNetwork);
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setIsConnected(state.isConnected);
+      dispatch(setConnectedState(state.isConnected));
+
+      if (state.isConnected) {
+        const onlineTimeout = setTimeout(() => {
+          setHasConnectionForFiveSecs(true);
+        }, 5000);
+
+        return () => clearTimeout(onlineTimeout);
+      } else {
+        setHasConnectionForFiveSecs(false);
+        Alert.alert('Turn on mobile data or Wi-Fi');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [isConnected, checkNetworkConn]);
+
   return (
     <LinearGradient
       start={{ x: 0.3, y: 0.9 }}
@@ -584,7 +611,7 @@ const ExpensesScreen: React.FC<Props> = ({ navigation }) => {
                           );
                         }}
                         buttonTextAfterSelection={(selectedItem: Item) => {
-                          return selectedItem.value;
+                          return selectedItem.label;
                         }}
                         dropdownStyle={{ borderRadius: 10 }}
                         buttonStyle={{
@@ -706,7 +733,7 @@ const ExpensesScreen: React.FC<Props> = ({ navigation }) => {
                   control={control}
                   render={({ field: { onChange, value } }) => (
                     <SelectDropdown
-                      defaultButtonText="currency"
+                      defaultButtonText={t('currencyText')}
                       buttonTextStyle={{ fontSize: 14, flexWrap: 'wrap' }}
                       defaultValue={value}
                       data={expensesCurrencies}

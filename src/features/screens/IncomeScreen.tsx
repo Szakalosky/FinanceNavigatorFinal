@@ -30,6 +30,7 @@ import { RootState } from '../../rootStates/rootState';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   navigateToMainContent,
+  setConnectedState,
   setIncomeScreenNotFirstRun,
   setMainContentScreenIncomeArray,
 } from '../../redux/actions';
@@ -37,6 +38,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { User as FirebaseUser } from '@react-native-firebase/auth';
+import NetInfo from '@react-native-community/netinfo';
+
 type Props = NativeStackScreenProps<NavigatorList, 'HomeScreen'>;
 
 export type IncomeFormValues = {
@@ -365,6 +368,31 @@ const IncomeScreen: React.FC<Props> = ({ navigation }) => {
     return () => unsubscribe();
   }, [userGoogleUId, isGoogleUserLoggedIn]);
 
+  const [isConnected, setIsConnected] = useState<boolean | null>(false);
+  const [hasConnectionForFiveSecs, setHasConnectionForFiveSecs] = useState<boolean>(false);
+
+  const checkNetworkConn = useSelector((state: RootState) => state.name.isConnectedToNetwork);
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setIsConnected(state.isConnected);
+      dispatch(setConnectedState(state.isConnected));
+
+      if (state.isConnected) {
+        const onlineTimeout = setTimeout(() => {
+          setHasConnectionForFiveSecs(true);
+        }, 5000);
+
+        return () => clearTimeout(onlineTimeout);
+      } else {
+        setHasConnectionForFiveSecs(false);
+        Alert.alert('Turn on mobile data or Wi-Fi');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [isConnected, checkNetworkConn]);
+
   return (
     <LinearGradient
       start={{ x: 0.3, y: 0.9 }}
@@ -603,7 +631,7 @@ const IncomeScreen: React.FC<Props> = ({ navigation }) => {
                   control={control}
                   render={({ field: { onChange, value } }) => (
                     <SelectDropdown
-                      defaultButtonText="currency"
+                      defaultButtonText={t('currencyText')}
                       buttonTextStyle={{ fontSize: 14, flexWrap: 'wrap' }}
                       defaultValue={value}
                       data={incomeCurrencies}
