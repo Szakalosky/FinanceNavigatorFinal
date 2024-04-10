@@ -51,6 +51,7 @@ interface ExpenseItem {
   expenseValue: number;
   expenseCurrency: string;
   id: string;
+  [key: string]: string | number;
 }
 
 interface IncomeItem {
@@ -62,6 +63,7 @@ interface IncomeItem {
   incomeValue: number;
   incomeCurrency: string;
   id: string;
+  [key: string]: string | number;
 }
 
 interface SavingsItem {
@@ -73,6 +75,7 @@ interface SavingsItem {
   savingsValue: number;
   savingsCurrency: string;
   id: string;
+  [key: string]: string | number;
 }
 
 interface InvestmentItem {
@@ -84,6 +87,7 @@ interface InvestmentItem {
   investmentValue: number;
   investmentCurrency: string;
   id: string;
+  [key: string]: string | number;
 }
 
 const ModalPopUp = ({ visible, children }: any) => {
@@ -207,7 +211,11 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const isPolish = i18n.language === 'pl';
+  const isEnglish = i18n.language === 'en';
+  const isDeutsch = i18n.language === 'de';
 
   const toggleExpenseUpdateComponentShown = (itemID: string) => {
     //Teraz uniqueID to 1 obiekt z tablicy expensesArray z polem ID na sztywno i zawsze zmianie ulegnie (updateowany) będzie 1 dokument z kolekcji expenseCollection
@@ -286,8 +294,8 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
     }
 
     const sortedExpenses = expensesArrayOnlyValues.slice().sort((a, b) => {
-      const dateA = new Date(a.expenseDate);
-      const dateB = new Date(b.expenseDate);
+      const dateA = new Date(a.expenseDate).valueOf();
+      const dateB = new Date(b.expenseDate).valueOf();
 
       if (sortOrder === 'asc') {
         return dateA - dateB;
@@ -299,8 +307,8 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
     });
 
     const sortedIncome = incomeArrayOnlyValues.slice().sort((a, b) => {
-      const dateA = new Date(a.incomeDate);
-      const dateB = new Date(b.incomeDate);
+      const dateA = new Date(a.incomeDate).valueOf();
+      const dateB = new Date(b.incomeDate).valueOf();
 
       if (sortOrder === 'asc') {
         return dateA - dateB;
@@ -312,8 +320,8 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
     });
 
     const sortedSavings = savingsArrayOnlyValues.slice().sort((a, b) => {
-      const dateA = new Date(a.savingsDate);
-      const dateB = new Date(b.savingsDate);
+      const dateA = new Date(a.savingsDate).valueOf();
+      const dateB = new Date(b.savingsDate).valueOf();
 
       if (sortOrder === 'asc') {
         return dateA - dateB;
@@ -325,8 +333,8 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
     });
 
     const sortedInvestments = investmentsArrayOnlyValues.slice().sort((a, b) => {
-      const dateA = new Date(a.investmentDate);
-      const dateB = new Date(b.investmentDate);
+      const dateA = new Date(a.investmentDate).valueOf();
+      const dateB = new Date(b.investmentDate).valueOf();
 
       if (sortOrder === 'asc') {
         return dateA - dateB;
@@ -353,8 +361,135 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
     'expenseDate',
   ];
 
+  type tplotTranslationOptions = {
+    [key: string]: {
+      [key: string]: string;
+    };
+  };
+
+  const translationExpensesLangaugesArray: tplotTranslationOptions = {
+    en: {
+      expenseCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      expenseAccount: 'TranscationsScreenUniversalAccountFieldText',
+      expenseValue: 'TranscationsScreenUniversalValueFieldText',
+      expenseCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      expenseTitle: 'TranscationsScreenUniversalTitleFieldText',
+      expenseNotes: 'TranscationsScreenUniversalNotesFieldText',
+      expenseDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+    pl: {
+      expenseCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      expenseAccount: 'TranscationsScreenUniversalAccountFieldText',
+      expenseValue: 'TranscationsScreenUniversalValueFieldText',
+      expenseCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      expenseTitle: 'TranscationsScreenUniversalTitleFieldText',
+      expenseNotes: 'TranscationsScreenUniversalNotesFieldText',
+      expenseDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+    de: {
+      expenseCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      expenseAccount: 'TranscationsScreenUniversalAccountFieldText',
+      expenseValue: 'TranscationsScreenUniversalValueFieldText',
+      expenseCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      expenseTitle: 'TranscationsScreenUniversalTitleFieldText',
+      expenseNotes: 'TranscationsScreenUniversalNotesFieldText',
+      expenseDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+  };
+
+  const translationIncomeLangaugesArray: tplotTranslationOptions = {
+    en: {
+      incomeCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      incomeAccount: 'TranscationsScreenUniversalAccountFieldText',
+      incomeValue: 'TranscationsScreenUniversalValueFieldText',
+      incomeCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      incomeTitle: 'TranscationsScreenUniversalTitleFieldText',
+      incomeNotes: 'TranscationsScreenUniversalNotesFieldText',
+      incomeDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+    pl: {
+      incomeCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      incomeAccount: 'TranscationsScreenUniversalAccountFieldText',
+      incomeValue: 'TranscationsScreenUniversalValueFieldText',
+      incomeCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      incomeTitle: 'TranscationsScreenUniversalTitleFieldText',
+      incomeNotes: 'TranscationsScreenUniversalNotesFieldText',
+      incomeDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+    de: {
+      incomeCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      incomeAccount: 'TranscationsScreenUniversalAccountFieldText',
+      incomeValue: 'TranscationsScreenUniversalValueFieldText',
+      incomeCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      incomeTitle: 'TranscationsScreenUniversalTitleFieldText',
+      incomeNotes: 'TranscationsScreenUniversalNotesFieldText',
+      incomeDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+  };
+
+  const translationSavingsLangaugesArray: tplotTranslationOptions = {
+    en: {
+      savingsCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      savingsAccount: 'TranscationsScreenUniversalAccountFieldText',
+      savingsValue: 'TranscationsScreenUniversalValueFieldText',
+      savingsCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      savingsTitle: 'TranscationsScreenUniversalTitleFieldText',
+      savingsNotes: 'TranscationsScreenUniversalNotesFieldText',
+      savingsDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+    pl: {
+      savingsCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      savingsAccount: 'TranscationsScreenUniversalAccountFieldText',
+      savingsValue: 'TranscationsScreenUniversalValueFieldText',
+      savingsCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      savingsTitle: 'TranscationsScreenUniversalTitleFieldText',
+      savingsNotes: 'TranscationsScreenUniversalNotesFieldText',
+      savingsDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+    de: {
+      savingsCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      savingsAccount: 'TranscationsScreenUniversalAccountFieldText',
+      savingsValue: 'TranscationsScreenUniversalValueFieldText',
+      savingsCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      savingsTitle: 'TranscationsScreenUniversalTitleFieldText',
+      savingsNotes: 'TranscationsScreenUniversalNotesFieldText',
+      savingsDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+  };
+
+  const translationInvestmentLangaugesArray: tplotTranslationOptions = {
+    en: {
+      investmentCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      investmentAccount: 'TranscationsScreenUniversalAccountFieldText',
+      investmentValue: 'TranscationsScreenUniversalValueFieldText',
+      investmentCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      investmentTitle: 'TranscationsScreenUniversalTitleFieldText',
+      investmentNotes: 'TranscationsScreenUniversalNotesFieldText',
+      investmentDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+    pl: {
+      investmentCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      investmentAccount: 'TranscationsScreenUniversalAccountFieldText',
+      investmentValue: 'TranscationsScreenUniversalValueFieldText',
+      investmentCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      investmentTitle: 'TranscationsScreenUniversalTitleFieldText',
+      investmentNotes: 'TranscationsScreenUniversalNotesFieldText',
+      investmentDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+    de: {
+      investmentCategory: 'TranscationsScreenUniversalCategoryFieldText',
+      investmentAccount: 'TranscationsScreenUniversalAccountFieldText',
+      investmentValue: 'TranscationsScreenUniversalValueFieldText',
+      investmentCurrency: 'TranscationsScreenUniversalCurrencyFieldText',
+      investmentTitle: 'TranscationsScreenUniversalTitleFieldText',
+      investmentNotes: 'TranscationsScreenUniversalNotesFieldText',
+      investmentDate: 'TranscationsScreenUniversalDateFieldText',
+    },
+  };
+
   const renderItemExpenseUpdate = ({ item, index }: { item: ExpenseItem; index: number }) => {
     const sortedExpenseFields = displayExpenseOrder.filter((field) => field in item);
+    const translationExpenseFields = translationExpensesLangaugesArray[i18n.language];
     return (
       <View
         style={{
@@ -381,10 +516,9 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
           {sortedExpenseFields.map(
             (key) =>
               key !== 'id' && (
-                <Text
-                  key={key}
-                  style={{ marginLeft: 10, color: 'white' }}
-                >{`${key}: ${item[key]}`}</Text>
+                <Text key={key} style={{ marginLeft: 10, color: 'white' }}>{`${t(
+                  translationExpenseFields[key]
+                )}: ${item[key]}`}</Text>
               )
           )}
         </View>
@@ -453,6 +587,7 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
 
   const renderItemIncomeUpdate = ({ item, index }: { item: IncomeItem; index: number }) => {
     const sortedIncomeFields = displayIncomeOrder.filter((field) => field in item);
+    const translationIncomeFields = translationIncomeLangaugesArray[i18n.language];
     return (
       <View
         style={{
@@ -479,10 +614,9 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
           {sortedIncomeFields.map(
             (key) =>
               key !== 'id' && (
-                <Text
-                  key={key}
-                  style={{ marginLeft: 10, color: 'white' }}
-                >{`${key}: ${item[key]}`}</Text>
+                <Text key={key} style={{ marginLeft: 10, color: 'white' }}>{`${t(
+                  translationIncomeFields[key]
+                )}: ${item[key]}`}</Text>
               )
           )}
         </View>
@@ -551,6 +685,7 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
 
   const renderItemSavingsUpdate = ({ item, index }: { item: SavingsItem; index: number }) => {
     const sortedSavingsFields = displaySavingsOrder.filter((field) => field in item);
+    const translationSavingsFields = translationSavingsLangaugesArray[i18n.language];
     return (
       <View
         style={{
@@ -577,10 +712,9 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
           {sortedSavingsFields.map(
             (key) =>
               key !== 'id' && (
-                <Text
-                  key={key}
-                  style={{ marginLeft: 10, color: 'black' }}
-                >{`${key}: ${item[key]}`}</Text>
+                <Text key={key} style={{ marginLeft: 10, color: 'black' }}>{`${t(
+                  translationSavingsFields[key]
+                )}: ${item[key]}`}</Text>
               )
           )}
         </View>
@@ -641,7 +775,7 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
     'investmentCategory',
     'investmentAccount',
     'investmentValue',
-    'investmentCurrecny',
+    'investmentCurrency',
     'investmentTitle',
     'investmentNotes',
     'investmentDate',
@@ -655,6 +789,7 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
     index: number;
   }) => {
     const sortedInvestmentFields = displayInvestmentOrder.filter((field) => field in item);
+    const translationInvestmentFields = translationInvestmentLangaugesArray[i18n.language];
     return (
       <View
         style={{
@@ -681,10 +816,9 @@ const TransactionsScreen: React.FC<Props> = ({ navigation }) => {
           {sortedInvestmentFields.map(
             (key) =>
               key !== 'id' && (
-                <Text
-                  key={key}
-                  style={{ marginLeft: 10, color: 'white' }}
-                >{`${key}: ${item[key]}`}</Text>
+                <Text key={key} style={{ marginLeft: 10, color: 'white' }}>{`${t(
+                  translationInvestmentFields[key]
+                )}: ${item[key]}`}</Text>
               )
           )}
         </View>

@@ -186,7 +186,7 @@
   "CategoryScreenSummedUpText": "Summe:",
   "CategoryScreenLimitText": "Kategorie Grenze:",
   "CategoryScreenMaxLimitToTheDayText": "Höchstgrenze für den Tag:",
-  "CategoryScreenLastMonthIncluded15ThDay": "Gesamtausgaben vor dem 15. Tag des letzten Monats",
+  "CategoryScreenLastMonthIncluded15ThDay": "Gesamtausgaben des letzten Monats",
   "CategoryScreenLastMonthOverall": "Gesamtausgaben des laufenden Monats",
   "SettingsScreenLocalNotificationsExpenseText": "die Kosten",
   "SettingsScreenLocalNotificationsIncomeText": "das Einkommen",
@@ -235,5 +235,12 @@
   "MakeReceiptPhotosScreenTakenDataQuantityText": "die Menge",
   "MakeReceiptPhotosScreenTakenDataUnitPriceText": "Einzelpreis",
   "MakeReceiptPhotosScreenTakenDataPriceText": "der Preis",
+  "TranscationsScreenUniversalCategoryFieldText": "die Kategorie",
+  "TranscationsScreenUniversalAccountFieldText": "das Konto",
+  "TranscationsScreenUniversalValueFieldText": "der Wert",
+  "TranscationsScreenUniversalCurrencyFieldText": "die Währung",
+  "TranscationsScreenUniversalTitleFieldText": "der Titel",
+  "TranscationsScreenUniversalNotesFieldText": "die Noten",
+  "TranscationsScreenUniversalDateFieldText": "das Datum",
   "FormsScreenSubmitText": "Hinzufügen"
 }

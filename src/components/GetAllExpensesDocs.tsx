@@ -109,10 +109,6 @@ const GetAllExpensesDocs = () => {
             filteredExpenses = parsedResult.filter((expense) => {
               const expenseMonth = expense.expenseDate.getMonth();
               const expenseYear = expense.expenseDate.getFullYear();
-              console.log('Expense month ', expenseMonth);
-              console.log('Expense year ', expenseYear);
-              console.log('Current month ', currentMonth);
-              console.log('Current year ', currentYear);
               const isLastSixMonths =
                 expenseYear === currentYear ||
                 currentMonth - expenseMonth <= 5 ||
@@ -136,10 +132,6 @@ const GetAllExpensesDocs = () => {
               const expenseMonth = expense.expenseDate.getMonth();
               const expenseYear = expense.expenseDate.getFullYear();
 
-              console.log('Expense month ', expenseMonth);
-              console.log('Expense year ', expenseYear);
-              console.log('Current month ', currentMonth);
-              console.log('Current year ', currentYear);
               const isOneYear = expenseYear <= currentYear || currentMonth - expenseMonth <= 11;
 
               return isOneYear;

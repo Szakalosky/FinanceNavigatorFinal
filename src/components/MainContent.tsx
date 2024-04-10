@@ -44,6 +44,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18next from '../services/i18next';
+import { Canvas, Circle, ImageShader, Rect, useImage } from '@shopify/react-native-skia';
 
 const MainContent = () => {
   const themeContext = useContext(ThemeContext);
@@ -177,21 +178,33 @@ const MainContent = () => {
   const onlyOneMonthDocuments = () => {
     const newStatus = !currentOneMonthStatus;
     dispatch(setOnlyOneMonthDocs(newStatus));
+    dispatch(setOnlyThreeMonthsDocs(false));
+    dispatch(setOnlySixMonthsDocs(false));
+    dispatch(setOnlyOneYearDocs(false));
   };
 
   const onlyThreeMonthsDocuments = () => {
     const newStatus = !currentThreeMonthsStatus;
     dispatch(setOnlyThreeMonthsDocs(newStatus));
+    dispatch(setOnlyOneMonthDocs(false));
+    dispatch(setOnlySixMonthsDocs(false));
+    dispatch(setOnlyOneYearDocs(false));
   };
 
   const onlySixMonthsDocuments = () => {
     const newStatus = !currentSixMonthsStatus;
     dispatch(setOnlySixMonthsDocs(newStatus));
+    dispatch(setOnlyOneMonthDocs(false));
+    dispatch(setOnlyThreeMonthsDocs(false));
+    dispatch(setOnlyOneYearDocs(false));
   };
 
   const onlyOneYearDocuments = () => {
     const newStatus = !currentOneYearStatus;
     dispatch(setOnlyOneYearDocs(newStatus));
+    dispatch(setOnlySixMonthsDocs(false));
+    dispatch(setOnlyOneMonthDocs(false));
+    dispatch(setOnlyThreeMonthsDocs(false));
   };
 
   const [errorConvertingReceiptTotalValue, setErrorConvertingReceiptTotalValue] = useState<

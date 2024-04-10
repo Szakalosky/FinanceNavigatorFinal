@@ -1,20 +1,37 @@
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
-import React from 'react';
+import { View, Text, Image, StyleSheet, Dimensions, SafeAreaView } from 'react-native';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-
+import Fontisto from 'react-native-vector-icons/Fontisto';
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
+let moveTopPosition = screenWidth * 0.15;
+let moveLeftPosition = screenWidth * 0.3;
+
 const GaugeSpeedometer = ({ value, minValue, maxValue }) => {
   const { t, i18n } = useTranslation();
   const calculateRotation = () => {
     const percentValue = (value - minValue) / (maxValue - minValue);
-
     let rotationDegrees = percentValue * 90;
-
     rotationDegrees = Math.min(rotationDegrees, 90);
-
-    return rotationDegrees.toString() + 'deg';
+    return rotationDegrees;
   };
+
+  const rotation = calculateRotation();
+
+  switch (true) {
+    case rotation === 90:
+      moveLeftPosition = 0;
+      moveTopPosition = 141 / 1.5;
+      break;
+    case rotation === 0:
+      moveLeftPosition = 0;
+      moveTopPosition = 141 / 1.5;
+      break;
+    default:
+      moveLeftPosition = 0;
+      moveTopPosition = 141 / 1.5;
+      break;
+  }
 
   const isPolish = i18n.language === 'pl';
   const isEnglish = i18n.language === 'en';
@@ -37,16 +54,34 @@ const GaugeSpeedometer = ({ value, minValue, maxValue }) => {
           right: screenHeight / ((screenHeight / screenWidth) * screenWidth),
         }}
       ></View>
-      <View
+      {/* <ArrowCanvas value={value} minValue={minValue} maxValue={maxValue} /> */}
+
+      <Fontisto
+        name="arrow-up-l"
+        color={'black'}
+        size={75}
+        style={{
+          position: 'absolute',
+          width: 35,
+          textAlign: 'center',
+          transform: [
+            { translateX: moveLeftPosition },
+            { translateY: moveTopPosition },
+            { rotate: `${rotation}deg` },
+          ],
+        }}
+      />
+
+      {/* <View
         style={[
           styles.pointer,
           {
             top: screenHeight / (screenWidth / 18),
             left: screenWidth / ((screenHeight / screenWidth) * 1.4),
           },
-          { transform: [{ rotate: calculateRotation() }] },
+          { transform: [{ rotate: `${rotation}deg` }] },
         ]}
-      ></View>
+      ></View> */}
     </View>
   );
 };

@@ -90,14 +90,10 @@ const ModalPopUpCategory = ({ visible, children }: any) => {
 
 const Category: React.FC<Props> = ({ navigation }) => {
   const [actualData, setActualData] = useState('');
-
+  const currentDate = moment().format('DD.MM.YYYY');
   useEffect(() => {
-    let date = new Date().getDate();
-    let month = new Date().getMonth() + 1;
-    let year = new Date().getFullYear();
-
-    setActualData(date + '.' + month + '.' + year);
-  }, []);
+    setActualData(currentDate);
+  }, [currentDate]);
 
   const theme = { mode: 'dark' };
   let activeColorsDark = colors.dark;
@@ -226,8 +222,6 @@ const Category: React.FC<Props> = ({ navigation }) => {
       ? Number(categoryCurrentMonthTotals[item.value]?.toFixed(2))
       : null;
 
-    //console.log(totalCurrentMonthForItem);
-
     moment.tz.setDefault('Europe/Warsaw');
     const currentMonthDay = moment().date(); // current day
     const daysInMonth = moment().daysInMonth();
@@ -271,7 +265,7 @@ const Category: React.FC<Props> = ({ navigation }) => {
                     {item.icon()}
                   </View>
                 )}
-                <Text style={{ marginLeft: 5 }}>{item.label}</Text>
+                <Text style={{ marginLeft: 5, color: 'white' }}>{item.label}</Text>
               </View>
               {totalCurrentMonthForItem !== null && isCurrentMonthCalculated ? (
                 <View style={{ flexDirection: 'row', gap: 5 }}>
@@ -349,7 +343,7 @@ const Category: React.FC<Props> = ({ navigation }) => {
       <View style={{ flexDirection: 'column', width: '100%' }}>
         <View
           style={{
-            padding: 20,
+            padding: 10,
             borderBottomWidth: 1,
             borderBottomColor: 'lightgray',
             flexDirection: 'column',
@@ -381,7 +375,7 @@ const Category: React.FC<Props> = ({ navigation }) => {
                     {item.icon()}
                   </View>
                 )}
-                <Text style={{ marginLeft: 5 }}>{item.label}</Text>
+                <Text style={{ marginLeft: 5, color: 'white' }}>{item.label}</Text>
               </View>
               {totalForItem !== null && isBudgetPerAccountCalculated ? (
                 <View style={{ flexDirection: 'row', gap: 5 }}>
@@ -534,19 +528,27 @@ const Category: React.FC<Props> = ({ navigation }) => {
 
   const convertAndSumExpense = async (expenseCategory: string): Promise<number> => {
     try {
-      const currentDate = new Date();
-      const lastMonthStartDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
-      lastMonthStartDate.setDate(15);
+      //const currentDate = new Date();
+      //const lastMonthStartDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+      //lastMonthStartDate.setDate(15);
+
+      const currentDate = moment().tz('Europe/warsaw');
+      //const lastMonthStartDate = currentDate.clone().subtract(1, 'month').endOf('month').date(15);
+      const startDate = currentDate.clone().subtract(1, 'months').startOf('month');
+      const endDate = currentDate.clone().subtract(1, 'months').endOf('month');
 
       let convertedExpensesValues = [];
 
       await Promise.all(
         expensesArrayOnlyValues
           .filter((expense) => {
-            const expenseDate = new Date(expense.expenseDate);
+            //const expenseDate = new Date(expense.expenseDate);
+            const expenseDate = moment(expense.expenseDate).tz('Europe/Warsaw');
             return (
               expense.expenseCategoryUniversalValue.toLowerCase() ===
-                expenseCategory.toLowerCase() && expenseDate <= lastMonthStartDate
+                expenseCategory.toLowerCase() &&
+              expenseDate.isSameOrAfter(startDate) &&
+              expenseDate.isSameOrBefore(endDate)
             );
           })
           .map(async (expense) => {
@@ -1206,7 +1208,7 @@ const Category: React.FC<Props> = ({ navigation }) => {
           <MaterialCommunityIcons name="information" color="white" size={30} />
         </View>
         <View style={styles.dataContainer}>
-          <Text>
+          <Text style={{ color: 'white', fontSize: 16 }}>
             {t('CategoryScreenData')}: {actualData}
           </Text>
         </View>
@@ -1321,6 +1323,7 @@ const Category: React.FC<Props> = ({ navigation }) => {
             margin: 10,
             padding: 5,
             borderRadius: 10,
+            textAlign: 'center',
           }}
         >
           {t('CategoryScreenLastMonthOverall')}
@@ -1363,6 +1366,7 @@ const Category: React.FC<Props> = ({ navigation }) => {
             margin: 10,
             padding: 5,
             borderRadius: 10,
+            textAlign: 'center',
           }}
         >
           {t('CategoryScreenLastMonthIncluded15ThDay')}

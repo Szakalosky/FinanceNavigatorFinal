@@ -522,7 +522,7 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
             const formattedTime = new Date(date);
             const actualExpenseTime = new Date(date);
             const currentHour = actualExpenseTime.getUTCHours();
-            actualExpenseTime.setUTCHours(currentHour + 1);
+            actualExpenseTime.setUTCHours(currentHour + 2);
             console.log('Coś 2,', actualExpenseTime.toUTCString());
 
             if (formattedTime && actualExpenseTime) {
@@ -583,7 +583,7 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
             console.log(formattedTime);
             const actualExpenseTime = new Date(date);
             const currentHour = actualExpenseTime.getUTCHours();
-            actualExpenseTime.setUTCHours(currentHour + 1);
+            actualExpenseTime.setUTCHours(currentHour + 2);
             if (formattedTime && actualExpenseTime) {
               setDateTimeCETIncome(actualExpenseTime);
               setTimeout(() => {
@@ -640,7 +640,7 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
             const formattedTime = new Date(date);
             const actualExpenseTime = new Date(date);
             const currentHour = actualExpenseTime.getUTCHours();
-            actualExpenseTime.setUTCHours(currentHour + 1);
+            actualExpenseTime.setUTCHours(currentHour + 2);
             if (formattedTime) {
               setDateTimeCETSavings(actualExpenseTime);
               dispatch(setSettingsScreenExpenseNotifications(formattedTime.toUTCString()));
@@ -697,7 +697,7 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
             const formattedTime = new Date(date);
             const actualInvestmentTime = new Date(date);
             const currentHour = actualInvestmentTime.getUTCHours();
-            actualInvestmentTime.setUTCHours(currentHour + 1);
+            actualInvestmentTime.setUTCHours(currentHour + 2);
             if (formattedTime && actualInvestmentTime) {
               setDateTimeCETInvestment(actualInvestmentTime);
               setTimeout(() => {
