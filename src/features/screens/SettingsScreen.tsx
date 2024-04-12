@@ -481,11 +481,11 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
     setIsInvestmentNotifSwitchEnabled(!isInvestmentNotifSwitchEnabled);
   };
 
-  const [dateTimeCETExpense, setDateTimeCETExpense] = useState<Date>();
+  const [dateTimeCETExpenseActual, setDateTimeCETExpenseActual] = useState<Date>();
 
-  const DateTimePickerForExpense = () => {
-    const [expenseDate, setExpenseDate] = useState(new Date(Date.now() + 3600000));
-    const [openExpense, setOpenExpense] = useState(false);
+  const PickerDateTimeForExpenseInModal = () => {
+    const [expenseDateActual, setExpenseDateActual] = useState(new Date(Date.now() + 3600000));
+    const [openExpenseModal, setOpenExpenseModal] = useState(false);
 
     return (
       <View
@@ -504,41 +504,40 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
           }}
           onPress={() => {
             if (isExpansesNotifSwitchEnabled) {
-              setOpenExpense(!openExpense);
+              setOpenExpenseModal(!openExpenseModal);
             }
           }}
         >
-          <Text>plan</Text>
+          <Text>{t('SettingsScreenLocalNotificationsPlanButton')}</Text>
         </TouchableOpacity>
         <DatePicker
           androidVariant="nativeAndroid"
           modal
           mode="datetime"
-          open={openExpense}
-          date={expenseDate}
+          open={openExpenseModal}
+          date={expenseDateActual}
           onConfirm={(date) => {
-            console.log('Coś,', date);
-            setExpenseDate(date);
-            const formattedTime = new Date(date);
-            const actualExpenseTime = new Date(date);
-            const currentHour = actualExpenseTime.getUTCHours();
-            actualExpenseTime.setUTCHours(currentHour + 2);
-            console.log('Coś 2,', actualExpenseTime.toUTCString());
+            setExpenseDateActual(date);
+            const formattedDateTime = new Date(date);
+            const actualExpenseTimeCET = new Date(date);
+            const currentHour = actualExpenseTimeCET.getUTCHours();
+            actualExpenseTimeCET.setUTCHours(currentHour + 2);
 
-            if (formattedTime && actualExpenseTime) {
-              setDateTimeCETExpense(actualExpenseTime);
-              dispatch(setSettingsScreenExpenseNotifications(formattedTime.toUTCString()));
+            if (formattedDateTime && actualExpenseTimeCET) {
+              setDateTimeCETExpenseActual(actualExpenseTimeCET);
+              dispatch(setSettingsScreenExpenseNotifications(formattedDateTime.toUTCString()));
 
               setTimeout(() => {
                 notif.createOrUpdateChannel();
-                console.log('Przekazana data', new Date(formattedTime));
-                notif.scheduleExpenseNotif('', formattedTime);
+                notif.scheduleExpenseNotif('', formattedDateTime);
               }, 1000);
             }
           }}
-          onCancel={() => setOpenExpense(false)}
+          onCancel={() => setOpenExpenseModal(false)}
         />
-        <Text style={{ color: 'black', fontSize: 16 }}>{dateTimeCETExpense?.toUTCString()}</Text>
+        <Text style={{ color: 'black', fontSize: 16 }}>
+          {dateTimeCETExpenseActual?.toUTCString()}
+        </Text>
       </View>
     );
   };
@@ -569,7 +568,7 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
             }
           }}
         >
-          <Text>plan</Text>
+          <Text>{t('SettingsScreenLocalNotificationsPlanButton')}</Text>
         </TouchableOpacity>
         <DatePicker
           androidVariant="nativeAndroid"
@@ -627,7 +626,7 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
             }
           }}
         >
-          <Text>plan</Text>
+          <Text>{t('SettingsScreenLocalNotificationsPlanButton')}</Text>
         </TouchableOpacity>
         <DatePicker
           androidVariant="nativeAndroid"
@@ -684,7 +683,7 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
             }
           }}
         >
-          <Text>plan</Text>
+          <Text>{t('SettingsScreenLocalNotificationsPlanButton')}</Text>
         </TouchableOpacity>
         <DatePicker
           androidVariant="nativeAndroid"
@@ -1359,7 +1358,7 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
                 </Text>
               </View>
               <View style={{ width: '50%' }}>
-                <DateTimePickerForExpense />
+                <PickerDateTimeForExpenseInModal />
               </View>
               <View
                 style={{

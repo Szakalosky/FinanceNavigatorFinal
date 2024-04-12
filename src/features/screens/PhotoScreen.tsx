@@ -209,7 +209,7 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [expensesArrayFromAPI, setExpensesArrayFromAPI] = useState<any[]>([]);
-  const parseOcrResponse = (response: string) => {
+  const parseOcrResponseFromMindee = (response: string) => {
     try {
       const parsedResponse = JSON.parse(response);
       const createdDate = new Date(Date.now());
@@ -263,24 +263,24 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
 
   const token = 'Token d6306679e134f7fc0d22f1d0fc3e528c';
 
-  const handleCaptureAndRecognize = async () => {
+  const capturePhotoAndRecognizeText = async () => {
     try {
       const imageFile = `file://${photos[photos.length - 1].path}`;
-      const pathFragment = imageFile.split('/');
+      const pathFragmentDirectory = imageFile.split('/');
 
-      const fileName = pathFragment[pathFragment.length - 1];
+      const fileName = pathFragmentDirectory[pathFragmentDirectory.length - 1];
       const directory = RNFS.DownloadDirectoryPath;
       const filePath = `${directory}/ReceiptImage.jpg`;
       console.log('Ścieżka: ', filePath);
 
       const formData = new FormData();
-      const imageContent = await RNFS.readFile(imageFile, 'base64');
+      const imageContentPhoto = await RNFS.readFile(imageFile, 'base64');
 
       formData.append('document', {
         uri: imageFile,
         name: fileName,
         type: 'image/jpg',
-        data: imageContent,
+        data: imageContentPhoto,
       });
 
       console.log('Form Data:', formData);
@@ -293,25 +293,28 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
         Alert.alert('User is not logged in');
         return;
       } else {
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener('readystatechange', () => {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200 || xhr.status === 201) {
-              const responseData = parseOcrResponse(xhr.responseText);
-              console.log('Receipt OCR result: ', xhr.responseText);
+        const newXhr = new XMLHttpRequest();
+        newXhr.addEventListener('readystatechange', () => {
+          if (newXhr.readyState === 4) {
+            if (newXhr.status === 200 || newXhr.status === 201) {
+              const responseData = parseOcrResponseFromMindee(newXhr.responseText);
+              console.log('Receipt OCR result: ', newXhr.responseText);
               console.log('Parsed OCR result: ', responseData);
 
               setIsLoadingFromAPI(false);
             } else {
-              console.error('Error in XHR', xhr.statusText);
+              console.error('Error in XHR', newXhr.statusText);
               Alert.alert('No internet connection');
               setIsLoadingFromAPI(false);
             }
           }
         });
-        xhr.open('POST', 'https://api.mindee.net/v1/products/mindee/expense_receipts/v5/predict');
-        xhr.setRequestHeader('Authorization', token);
-        xhr.send(formData);
+        newXhr.open(
+          'POST',
+          'https://api.mindee.net/v1/products/mindee/expense_receipts/v5/predict'
+        );
+        newXhr.setRequestHeader('Authorization', token);
+        newXhr.send(formData);
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -581,7 +584,7 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
                       setIsLoadingFromAPI(false);
                     }
                   }, 500);
-                  handleCaptureAndRecognize();
+                  capturePhotoAndRecognizeText();
                 }}
               >
                 <Text style={{ fontSize: 18, color: 'black' }}>

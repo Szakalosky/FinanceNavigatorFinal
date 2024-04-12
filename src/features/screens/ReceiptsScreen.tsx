@@ -22,11 +22,11 @@ const PhotoPreview: React.FC<{ photo: string; onPress: () => void }> = ({ photo,
 const ReceiptsScreen: React.FC<Props> = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const [newReceiptImages, setNewReceiptImages] = useState<PhotoFile[]>([]);
-  const [processedImageNames, setProcessedImageNames] = useState<string[]>([]);
+  const [newReceiptImagesFromDownload, setNewReceiptImagesFromDownload] = useState<PhotoFile[]>([]);
+  const [processedImageNamesFromCamera, setProcessedImageNamesFromCamera] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isClicked, setIsClicked] = useState(false);
-  const isEqual = (array1, array2) => {
+  const isArraysEqual = (array1, array2) => {
     if (array1.length !== array2.length) {
       return false;
     }
@@ -40,21 +40,21 @@ const ReceiptsScreen: React.FC<Props> = ({ navigation }) => {
 
   const readAllReceiptsFromDirectory = async () => {
     try {
-      const images = await RNFS.readDir(RNFS.DownloadDirectoryPath);
+      const imagesFromDownloadFolder = await RNFS.readDir(RNFS.DownloadDirectoryPath);
 
-      const currentImageNames = images
+      const lookForCurrentImageNames = imagesFromDownloadFolder
         .filter((file) => file.name.startsWith('receipt') && file.name.endsWith('.jpg'))
         .map((file) => file.name);
 
       if (
-        currentImageNames.length !== processedImageNames.length ||
-        isEqual(currentImageNames, processedImageNames)
+        lookForCurrentImageNames.length !== processedImageNamesFromCamera.length ||
+        isArraysEqual(lookForCurrentImageNames, processedImageNamesFromCamera)
       ) {
-        const newImages = currentImageNames.map((imageName) => ({
+        const newImagesInDownloadFolder = lookForCurrentImageNames.map((imageName) => ({
           path: `${RNFS.DownloadDirectoryPath}/${imageName}`,
         }));
-        setNewReceiptImages(
-          newImages.map((image) => ({
+        setNewReceiptImagesFromDownload(
+          newImagesInDownloadFolder.map((image) => ({
             path: image.path,
             width: 0,
             height: 0,
@@ -63,7 +63,7 @@ const ReceiptsScreen: React.FC<Props> = ({ navigation }) => {
             isMirrored: false,
           }))
         );
-        setProcessedImageNames(currentImageNames);
+        setProcessedImageNamesFromCamera(lookForCurrentImageNames);
       }
     } catch (error) {
       console.error('Error reading images', error);
@@ -102,8 +102,8 @@ const ReceiptsScreen: React.FC<Props> = ({ navigation }) => {
             flexWrap: 'wrap',
           }}
         >
-          {newReceiptImages.length > 0 ? (
-            newReceiptImages.map((image, index) => (
+          {newReceiptImagesFromDownload.length > 0 ? (
+            newReceiptImagesFromDownload.map((image, index) => (
               <View key={index} style={styles.containerForPhoto}>
                 <PhotoPreview
                   photo={`file://${image.path}`}
