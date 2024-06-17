@@ -4,7 +4,35 @@
     <img src="src/assets/images/WelcomeScreen1.webp" alt="FirstWelcomeScreen" height="500"/> 
     <img src="src/assets/images/WelcomeScreen2.webp" alt="SecondWelcomeScreen" height="500"/> 
     <img src="src/assets/images/WelcomeScreen3.webp" alt="ThirdWelcomeScreen" height="500"/> 
-    <img src="src/assets/images/WelcomeScreen4.webp" alt="FourthWelcomeScreen" height="500"/> 
+    <img src="src/assets/images/WelcomeScreen4.webp" alt="FourthWelcomeScreen" height="500"/>
+    <img src="src/assets/images/MainScreen1.webp" alt="MainScreenOne" height="500"/> 
+    <img src="src/assets/images/ModalMainScreen.webp" alt="ModalMainScreen" height="500"/> 
+    <img src="src/assets/images/MainScreen2.webp" alt="MainScreenTwo" height="500"/> 
+    <img src="src/assets/images/MainScreen2Transactions.webp" alt="MainScreenTwoTransactions" height="500"/>
+    <img src="src/assets/images/ExpenseScreen.webp" alt="ExpensesScreen" height="500"/> 
+    <img src="src/assets/images/IncomeScreen.webp" alt="IncomeScreen" height="500"/> 
+    <img src="src/assets/images/SavingsScreen.webp" alt="SavingsScreen" height="500"/> 
+    <img src="src/assets/images/InvestmentsScreen.webp" alt="InvestmentsScreen" height="500"/>
+    <img src="src/assets/images/UpdateScreen1.webp" alt="UpdateScreenOne" height="500"/> 
+    <img src="src/assets/images/UpdateScreen2.webp" alt="UpdateScreenTwo" height="500"/> 
+    <img src="src/assets/images/UpdateScreen3.webp" alt="UpdateScreenThree" height="500"/> 
+    <img src="src/assets/images/LimitScreen1.webp" alt="LimitScreenOne" height="500"/>
+    <img src="src/assets/images/LimitScreen2.webp" alt="LimitScreenTwo" height="500"/>
+    <img src="src/assets/images/CategoryScreen1.webp" alt="CategoryScreenOne" height="500"/>
+    <img src="src/assets/images/CategoryScreen2.webp" alt="CategoryScreenTwo" height="500"/>
+    <img src="src/assets/images/CategoryScreen3.webp" alt="CategoryScreenThree" height="500"/>
+    <img src="src/assets/images/OCRImageScreen1.webp" alt="OCRImageScreenOne" height="500"/>
+    <img src="src/assets/images/OCRImageScreen2.webp" alt="OCRImageScreenTwo" height="500"/>
+    <img src="src/assets/images/OCRImageScreen3.webp" alt="OCRImageScreenThree" height="500"/>
+    <img src="src/assets/images/OCRImageScreen4.webp" alt="OCRImageScreenFour" height="500"/>
+    <img src="src/assets/images/OCRImageScreen5.webp" alt="OCRImageScreenFive" height="500"/>
+    <img src="src/assets/images/AllReceiptsScreen1.webp" alt="AllReceiptsScreenOne" height="500"/>
+    <img src="src/assets/images/AllReceiptsScreen2.webp" alt="AllReceiptsScreenTwo" height="500"/>
+    <img src="src/assets/images/AllReceiptsScreen3.webp" alt="AllReceiptsScreenThree" height="500"/>
+    <img src="src/assets/images/SettingsScreen.webp" alt="SettingsScreen" height="500"/>
+    <img src="src/assets/images/CurrencyModal.webp" alt="CurrencyModal" height="500"/>
+    <img src="src/assets/images/ExchangeRateModal.webp" alt="ExchangeRateModal" height="500"/>
+    <img src="src/assets/images/LanguageModal.webp" alt="LanguageModal" height="500"/>
 </p>
 
 ## Konfiguracja projektu
