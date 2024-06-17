@@ -1,8 +1,11 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Apperance of mobile app
 
-# Getting Started
-
-> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+<p align="center">
+    <img src="src/assets/images/WelcomeScreen1.webp" alt="FirstWelcomeScreen" height="500"/> 
+    <img src="src/assets/images/WelcomeScreen2.webp" alt="SecondWelcomeScreen" height="500"/> 
+    <img src="src/assets/images/WelcomeScreen3.webp" alt="ThirdWelcomeScreen" height="500"/> 
+    <img src="src/assets/images/WelcomeScreen4.webp" alt="FourthWelcomeScreen" height="500"/> 
+</p>
 
 ## Konfiguracja projektu
 
