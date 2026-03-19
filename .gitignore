@@ -36,6 +36,14 @@ local.properties
 /android/gradle.properties
 /android/app/google-services.json
 
+# iOS
+ios/Pods/
+ios/build/
+ios/*.xcworkspace
+ios/.xcode.env.local
+ios/.xcode.env
+ios/**/xcuserdata/
+
 # node.js
 #
 node_modules/
@@ -58,7 +66,6 @@ yarn-error.log
 *.jsbundle
 
 # Ruby / CocoaPods
-/ios/Pods/
 /vendor/bundle/
 
 # Temporary files created by Metro to check the health of the file watcher
