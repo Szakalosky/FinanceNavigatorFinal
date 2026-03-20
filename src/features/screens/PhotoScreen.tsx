@@ -39,6 +39,7 @@ import 'firebase/compat/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootState } from '../../rootStates/rootState';
 import { User as FirebaseUser } from '@react-native-firebase/auth';
+import Config from 'react-native-config';
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
 Reanimated.addWhitelistedNativeProps({
   zoom: true,
@@ -261,7 +262,7 @@ const CameraScreen: React.FC<Props> = ({ navigation }) => {
     return [];
   };
 
-  const token = 'Token d6306679e134f7fc0d22f1d0fc3e528c';
+  const token = Config.MINDEE_RECEIPT_TOKEN;
 
   const capturePhotoAndRecognizeText = async () => {
     try {

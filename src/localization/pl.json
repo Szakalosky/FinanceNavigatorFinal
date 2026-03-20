@@ -158,7 +158,7 @@
   "InvestmentUpdateButonText": "Aktualizuj inwestycje",
   "MakeReceiptPhotosScreenAppBarText": "Powrót do menu głównego",
   "MakeReceiptPhotosScreenWelcomeText": "W tym miejscu możesz zrobić zdjęcia swoich paragonów i dodać je do bazy danych",
-  "MakeReceiptPhotosScreenWarningReceiptsText": "Nowość. Wszyscy zalogowani użytkownicy mogą łącznie wykonać 250 poprawnych rozpoznań tekstu / 1 miesiąc. Odnowienie co miesiąc 12-tego.",
+  "MakeReceiptPhotosScreenWarningReceiptsText": "Nowość. Wszyscy zalogowani użytkownicy (Google) mogą łącznie wykonać 200 poprawnych rozpoznań tekstu, zapytań lub korzystać przez 14 dni z konta dewelopera. Po wykorzystaniu limitu, granic funkcja skanowania paragonów staje się nieaktywna i aplikacja będzie zwracać błąd. OCR dostarcza firma Mindee",
   "MakeReceiptPhotosScreenRunCameraButton": "Uruchom aparat",
   "MakeReceiptPhotosScreenHideCameraButton": "Ukryj aparat",
   "MakeReceiptPhotosScreenRecognizeTextButton": "Rozpoznaj tekst",

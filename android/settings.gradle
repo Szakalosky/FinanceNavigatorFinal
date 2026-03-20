@@ -6,3 +6,5 @@ include ':react-native-fs'
 project(':react-native-fs').projectDir = new File(settingsDir, '../node_modules/react-native-fs/android')
 include ':react-native-push-notification'
 project(':react-native-push-notification').projectDir = file('../node_modules/react-native-push-notification/android')
+include ':react-native-config'
+project(':react-native-config').projectDir = file('../node_modules/react-native-config/android')

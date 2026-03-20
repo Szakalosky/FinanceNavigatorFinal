@@ -10,10 +10,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Create .env file from Secrets
+        run: |
+          # Tworzymy plik .env na maszynie wirtualnej
+          echo "FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}" >> .env.development
+          echo "FIREBASE_AUTH_DOMAIN=${{ secrets.FIREBASE_AUTH_DOMAIN }}" >> .env.development
+          echo "FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}" >> .env.development
+          echo "FIREBASE_STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }}" >> .env.development
+          echo "FIREBASE_MESSAGING_SENDER_ID=${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}" >> .env.development
+          echo "FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }}" >> .env.development
+
+          # Kluczowy krok dla iOS: wskazujemy, który plik ma być użyty
+          echo ".env.development" > /tmp/envfile
+        shell: bash
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
@@ -26,12 +40,14 @@ jobs:
 
       - name: Install Pods
         run: |
+          export ENVFILE=.env.development
           cd ios
           pod install --repo-update # --repo-update, refresh Firebase source, don't use old firebase cache
         shell: bash
 
       - name: Build iOS App
         run: |
+          export ENVFILE=.env.development
           xcodebuild -workspace ios/FinanceNavigator.xcworkspace \
             -scheme FinanceNavigator \
             -configuration Debug \
