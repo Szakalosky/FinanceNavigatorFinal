@@ -158,7 +158,7 @@
   "InvestmentUpdateButonText": "Investitionen aktualisieren",
   "MakeReceiptPhotosScreenAppBarText": "Zurück zum Hauptbildschirm",
   "MakeReceiptPhotosScreenWelcomeText": "Hier können Sie Fotos von Ihren Belegen machen und diese zur Datenbank hinzufügen",
-  "MakeReceiptPhotosScreenWarningReceiptsText": "Neue Funktion. Alle angemeldeten Benutzer können insgesamt 250 korrekte Texterkennungen vornehmen / 1 Monat. Erneuerung jeden Monat am 12.",
+  "MakeReceiptPhotosScreenWarningReceiptsText": "Neue Funktion. Alle angemeldeten Nutzer (Google) können insgesamt 200 korrekte Texterkennungen oder Abfragen durchführen oder das Entwicklerkonto 14 Tage lang nutzen. Nach Ausschöpfung des Limits wird die Funktion zum Scannen von Belegen deaktiviert und die App gibt eine Fehlermeldung aus. Die OCR-Funktion wird von der Firma Mindee bereitgestellt.",
   "MakeReceiptPhotosScreenRunCameraButton": "Kamera ausführen",
   "MakeReceiptPhotosScreenHideCameraButton": "Kamera ausblenden",
   "MakeReceiptPhotosScreenRecognizeTextButton": "Text erkennen",

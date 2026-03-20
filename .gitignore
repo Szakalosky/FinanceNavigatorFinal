@@ -74,5 +74,5 @@ yarn-error.log
 # testing
 /coverage
 
-# database
-/src/database
+#ignore env files
+.env*

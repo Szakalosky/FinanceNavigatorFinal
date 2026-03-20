@@ -157,7 +157,7 @@
   "InvestmentUpdateButonText": "Update investment",
   "MakeReceiptPhotosScreenAppBarText": "Back to Main Screen",
   "MakeReceiptPhotosScreenWelcomeText": "This is place where you can make photos of your receipts and add them to database",
-  "MakeReceiptPhotosScreenWarningReceiptsText": "New feature. All logged in users can make 250 correct text recognition in total / 1 month. Renewal every month on the 12th.",
+  "MakeReceiptPhotosScreenWarningReceiptsText": "New feature. All logged-in users (Google) can perform a total of 200 successful text recognitions or queries, or use the developer account for 14 days. Once this limit is reached, the receipt scanning feature will be disabled and the app will return an error. OCR is provided by Mindee.",
   "MakeReceiptPhotosScreenRunCameraButton": "Run Camera",
   "MakeReceiptPhotosScreenHideCameraButton": "Hide Camera",
   "MakeReceiptPhotosScreenRecognizeTextButton": "Recognize Text",
