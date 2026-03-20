@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>333948556331-c9g7js03n1pq0dsici42nt48m34mk17l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.333948556331-c9g7js03n1pq0dsici42nt48m34mk17l</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>333948556331-0ucd1k6edt0jmsfbokqivb6b2fb8t7as.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBiZ6wgjYIWXq9sar-Kwo-1I8usUzA-s2U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>333948556331</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.FinanceNavigator</string>
+	<key>PROJECT_ID</key>
+	<string>financenavigatorapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>financenavigatorapp.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:333948556331:ios:42cfcdb5a3074a7225066e</string>
+</dict>
+</plist>
