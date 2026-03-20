@@ -1,0 +1,54 @@
+name: iOS Debug Build (No Signing)
+on:
+  workflow_dispatch: # Pozwala uruchomić budowanie ręcznie w zakładce Actions
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Setup Ruby (for CocoaPods)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Install Pods
+        run: |
+          cd ios
+          pod install
+        shell: bash
+
+      - name: Build iOS App
+        run: |
+          xcodebuild -workspace ios/FinanceNavigator.xcworkspace \
+            -scheme FinanceNavigator \
+            -configuration Debug \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO
+        # Flagi CODE_SIGNING_ALLOWED=NO są kluczowe, by build nie wywalił się przez brak certyfikatów
+
+      - name: Zip App Bundle
+        run: |
+          cd build/Build/Products/Debug-iphoneos
+          zip -r FinanceNavigator.app.zip FinanceNavigator.app
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-debug-app
+          path: build/Build/Products/Debug-iphoneos/FinanceNavigator.app.zip
