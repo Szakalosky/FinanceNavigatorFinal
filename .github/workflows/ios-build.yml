@@ -1,4 +1,4 @@
-name: iOS Debug Build (No Signing)
+name: iOS Release Build (No Signing)
 on:
   workflow_dispatch: # Pozwala uruchomić budowanie ręcznie w zakładce Actions
 env:
@@ -50,22 +50,23 @@ jobs:
           export ENVFILE=.env.development
           xcodebuild -workspace ios/FinanceNavigator.xcworkspace \
             -scheme FinanceNavigator \
-            -configuration Debug \
+            -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             COMPILER_INDEX_STORE_ENABLE=NO
+        shell: bash
         # Flagi CODE_SIGNING_ALLOWED=NO są kluczowe, by build nie wywalił się przez brak certyfikatów
 
       - name: Zip App Bundle
         run: |
-          cd build/Build/Products/Debug-iphoneos
+          cd build/Build/Products/Release-iphoneos
           zip -r FinanceNavigator.app.zip FinanceNavigator.app
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ios-debug-app
-          path: build/Build/Products/Debug-iphoneos/FinanceNavigator.app.zip
+          name: ios-release-app
+          path: build/Build/Products/Release-iphoneos/FinanceNavigator.app.zip
