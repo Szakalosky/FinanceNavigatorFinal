@@ -10,6 +10,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+        # KROK: Weryfikacja położenia GoogleService-Info.plist
+      - name: Verify GoogleService-Info.plist location
+        run: |
+          if [ -f "ios/GoogleService-Info.plist" ]; then
+            echo "SUCCESS: GoogleService-Info.plist found in ios/ root."
+          elif [ -f "ios/FinanceNavigator/GoogleService-Info.plist" ]; then
+            echo "Moving GoogleService-Info.plist from subfolder to ios/ root..."
+            mv ios/FinanceNavigator/GoogleService-Info.plist ios/GoogleService-Info.plist
+          else
+            echo "ERROR: GoogleService-Info.plist not found in ios/ or ios/FinanceNavigator/"
+            exit 1
+          fi
+        shell: bash
+
       - name: Create .env file from Secrets
         run: |
           # Tworzymy plik .env na maszynie wirtualnej
